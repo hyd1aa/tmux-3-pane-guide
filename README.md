@@ -6,6 +6,8 @@
 
 ![tmux 三分屏效果图](https://img.cdn1.vip/i/6a99239a778b0_1788421018.webp)
 
+<br>
+
 ## 目录
 
 - [tmux 是什么](#tmux-是什么)
@@ -18,6 +20,7 @@
 - [关闭 Pane、Window 和 Session](#关闭-panewindow-和-session)
 - [常用命令](#常用-tmux-命令)
 - [快捷键帮助](#tmux-快捷键帮助--cheat-sheet)
+- [完整默认快捷键参考](#完整默认快捷键参考)
 - [一分钟完成三分屏](#一分钟完成三分屏)
 - [常见问题](#常见问题-faq)
 
@@ -315,6 +318,110 @@ tmux a -t work
 | --- | --- |
 | `Prefix → ?` | 打开 tmux 自带的完整快捷键帮助；按 `q` 退出 |
 | `Prefix → :` | 打开 tmux 命令输入行 |
+
+## 完整默认快捷键参考
+
+> 默认快捷键可能随 tmux 版本变化；以下内容已用 tmux 3.2a 的默认 `prefix` key table 核对。请始终以 `Prefix → ?` 或 `tmux list-keys -T prefix -N` 显示的当前版本绑定为准。自定义 `~/.tmux.conf` 也可能改变这些按键。
+
+按键记法：`C-` 表示 Ctrl，`M-` 表示 Alt/Meta，`S-` 表示 Shift，`PPage` 表示 PageUp，`DC` 通常表示 Delete。下表中的每一项都要先按 Prefix。
+
+### Prefix、控制与布局
+
+| 快捷键 | 默认功能 |
+| --- | --- |
+| `Prefix → Ctrl+b` | 把 Prefix 键发送给 Pane 内的程序 |
+| `Prefix → Ctrl+o` | 轮换 Pane 的位置 |
+| `Prefix → Ctrl+z` | 挂起当前 tmux 客户端 |
+| `Prefix → Space` | 选择下一个预设布局 |
+| `Prefix → !` | 把当前 Pane 独立成新 Window |
+| `Prefix → "` | 上下分屏 |
+| `Prefix → #` | 列出所有粘贴 buffer |
+| `Prefix → $` | 重命名当前 Session |
+| `Prefix → %` | 左右分屏 |
+| `Prefix → &` | 关闭当前 Window并确认 |
+| `Prefix → '` | 输入编号并选择 Window |
+| `Prefix → (` | 切换到上一个客户端 |
+| `Prefix → )` | 切换到下一个客户端 |
+| `Prefix → ,` | 重命名当前 Window |
+| `Prefix → -` | 删除最近的粘贴 buffer |
+| `Prefix → .` | 移动当前 Window |
+| `Prefix → /` | 查询某个按键的绑定说明 |
+| `Prefix → 0` … `9` | 选择编号为 0 到 9 的 Window（共 10 个默认绑定） |
+| `Prefix → :` | 打开 tmux 命令输入行 |
+| `Prefix → ;` | 切换到上一次活动的 Pane |
+| `Prefix → =` | 从列表中选择粘贴 buffer |
+| `Prefix → ?` | 列出快捷键；按 `q` 退出 |
+
+### 选择、状态与常用操作
+
+| 快捷键 | 默认功能 |
+| --- | --- |
+| `Prefix → C` | 打开选项自定义界面 |
+| `Prefix → D` | 从列表中选择客户端 |
+| `Prefix → E` | 平均分配 Pane 大小 |
+| `Prefix → L` | 切换到上一个客户端 |
+| `Prefix → M` | 清除已标记的 Pane |
+| `Prefix → [` | 进入 copy mode |
+| `Prefix → ]` | 粘贴最近的 buffer |
+| `Prefix → c` | 创建新 Window |
+| `Prefix → d` | detach 当前客户端 |
+| `Prefix → f` | 搜索 Pane |
+| `Prefix → i` | 显示 Window 信息 |
+| `Prefix → l` | 选择上一次活动的 Window |
+| `Prefix → m` | 标记或取消标记 Pane |
+| `Prefix → n` | 选择下一个 Window |
+| `Prefix → o` | 选择下一个 Pane |
+| `Prefix → p` | 选择上一个 Window |
+| `Prefix → q` | 显示 Pane 编号 |
+| `Prefix → r` | 重绘当前客户端 |
+| `Prefix → s` | 从列表中选择 Session |
+| `Prefix → t` | 显示时钟 |
+| `Prefix → w` | 从列表中选择 Window |
+| `Prefix → x` | 关闭活动 Pane并确认 |
+| `Prefix → z` | 缩放或恢复活动 Pane |
+| `Prefix → {` | 与上方 Pane 交换位置 |
+| `Prefix → }` | 与下方 Pane 交换位置 |
+| `Prefix → ~` | 显示 tmux 消息 |
+
+### 导航、调整大小与视图
+
+| 快捷键 | 默认功能 |
+| --- | --- |
+| `Prefix → Delete`（`DC`） | 让 Window 的可见区域重新跟随光标 |
+| `Prefix → PageUp`（`PPage`） | 进入 copy mode 并向上滚动 |
+| `Prefix → ↑ / ↓ / ← / →` | 选择对应方向的 Pane（共 4 个默认绑定） |
+| `Prefix → Alt+1` | 使用 even-horizontal 布局 |
+| `Prefix → Alt+2` | 使用 even-vertical 布局 |
+| `Prefix → Alt+3` | 使用 main-horizontal 布局 |
+| `Prefix → Alt+4` | 使用 main-vertical 布局 |
+| `Prefix → Alt+5` | 使用 tiled 布局 |
+| `Prefix → Alt+n` | 选择下一个有 alert 的 Window |
+| `Prefix → Alt+o` | 反向轮换 Pane 位置 |
+| `Prefix → Alt+p` | 选择上一个有 alert 的 Window |
+| `Prefix → Alt+↑ / ↓ / ← / →` | 按 5 格调整 Pane 大小（共 4 个默认绑定） |
+| `Prefix → Ctrl+↑ / ↓ / ← / →` | 按 1 格调整 Pane 大小（共 4 个默认绑定） |
+| `Prefix → Shift+↑ / ↓ / ← / →` | 移动 Window 的可见区域（共 4 个默认绑定） |
+
+上表共覆盖 **83 个** tmux 3.2a 默认 Prefix 绑定；为方便阅读，方向键和数字键按功能合并展示，但计数按实际独立绑定计算。
+
+### 从 tmux 或 shell 查询当前绑定
+
+- `Prefix → ?`：在 tmux 内查看所有快捷键，按 `q` 退出。
+- `Prefix → /`：查询某一个按键的作用；较旧或自定义配置可能没有此默认绑定。
+- `tmux list-keys -T prefix -N`：从 shell 查看完整 Prefix 快捷键及说明。
+
+```bash
+tmux list-keys -N
+tmux list-keys -T prefix -N
+tmux lsk -N | less
+```
+
+copy mode 和 vi 风格 copy mode 还有各自独立、数量很多的 key table。主教程不逐项展开，高级用户可直接查询：
+
+```bash
+tmux list-keys -T copy-mode
+tmux list-keys -T copy-mode-vi
+```
 
 ## 一分钟完成三分屏
 

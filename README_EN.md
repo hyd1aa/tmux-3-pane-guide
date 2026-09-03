@@ -6,6 +6,8 @@ A from-scratch guide to tmux on Linux, SSH, and VPS servers, ending with one lar
 
 ![tmux 3-pane layout](https://img.cdn1.vip/i/6a99239a778b0_1788421018.webp)
 
+<br>
+
 ## Contents
 
 - [What is tmux?](#what-is-tmux)
@@ -18,6 +20,7 @@ A from-scratch guide to tmux on Linux, SSH, and VPS servers, ending with one lar
 - [Close a Pane, Window, or Session](#close-a-pane-window-or-session)
 - [Useful commands](#useful-tmux-commands)
 - [Keyboard cheat sheet](#tmux-keyboard-shortcuts--cheat-sheet)
+- [Complete default key bindings](#complete-default-key-bindings-reference)
 - [Three panes in one minute](#three-panes-in-one-minute)
 - [FAQ](#frequently-asked-questions)
 
@@ -315,6 +318,110 @@ Usually `q` or `Esc` exits copy mode. Selection keys depend on whether tmux is c
 | --- | --- |
 | `Prefix → ?` | Open tmux's built-in key-binding help; press `q` to exit |
 | `Prefix → :` | Open the tmux command prompt |
+
+## Complete Default Key Bindings Reference
+
+> Default bindings may change between tmux versions. The reference below was checked against the default tmux 3.2a `prefix` key table. Always treat `Prefix → ?` or `tmux list-keys -T prefix -N` as authoritative for your installed version. Your `~/.tmux.conf` may also change these bindings.
+
+Notation: `C-` means Ctrl, `M-` means Alt/Meta, `S-` means Shift, `PPage` means PageUp, and `DC` usually means Delete. Every item below is pressed after the Prefix.
+
+### Prefix, control, and layout
+
+| Shortcut | Default action |
+| --- | --- |
+| `Prefix → Ctrl+b` | Send the Prefix key to the program inside the Pane |
+| `Prefix → Ctrl+o` | Rotate through the Panes |
+| `Prefix → Ctrl+z` | Suspend the current tmux client |
+| `Prefix → Space` | Select the next preset layout |
+| `Prefix → !` | Break the current Pane into a new Window |
+| `Prefix → "` | Split top and bottom |
+| `Prefix → #` | List all paste buffers |
+| `Prefix → $` | Rename the current Session |
+| `Prefix → %` | Split left and right |
+| `Prefix → &` | Kill the current Window after confirmation |
+| `Prefix → '` | Prompt for a Window index to select |
+| `Prefix → (` | Switch to the previous client |
+| `Prefix → )` | Switch to the next client |
+| `Prefix → ,` | Rename the current Window |
+| `Prefix → -` | Delete the most recent paste buffer |
+| `Prefix → .` | Move the current Window |
+| `Prefix → /` | Describe a key binding |
+| `Prefix → 0` … `9` | Select Window 0 through 9 (10 separate default bindings) |
+| `Prefix → :` | Open the tmux command prompt |
+| `Prefix → ;` | Move to the previously active Pane |
+| `Prefix → =` | Choose a paste buffer from a list |
+| `Prefix → ?` | List key bindings; press `q` to exit |
+
+### Selection, status, and common actions
+
+| Shortcut | Default action |
+| --- | --- |
+| `Prefix → C` | Open the option-customization interface |
+| `Prefix → D` | Choose a client from a list |
+| `Prefix → E` | Spread Panes out evenly |
+| `Prefix → L` | Switch to the last client |
+| `Prefix → M` | Clear the marked Pane |
+| `Prefix → [` | Enter copy mode |
+| `Prefix → ]` | Paste the most recent buffer |
+| `Prefix → c` | Create a new Window |
+| `Prefix → d` | Detach the current client |
+| `Prefix → f` | Search for a Pane |
+| `Prefix → i` | Display Window information |
+| `Prefix → l` | Select the previously current Window |
+| `Prefix → m` | Toggle the marked Pane |
+| `Prefix → n` | Select the next Window |
+| `Prefix → o` | Select the next Pane |
+| `Prefix → p` | Select the previous Window |
+| `Prefix → q` | Display Pane numbers |
+| `Prefix → r` | Redraw the current client |
+| `Prefix → s` | Choose a Session from a list |
+| `Prefix → t` | Show a clock |
+| `Prefix → w` | Choose a Window from a list |
+| `Prefix → x` | Kill the active Pane after confirmation |
+| `Prefix → z` | Zoom or restore the active Pane |
+| `Prefix → {` | Swap the active Pane with the Pane above |
+| `Prefix → }` | Swap the active Pane with the Pane below |
+| `Prefix → ~` | Show tmux messages |
+
+### Navigation, resizing, and viewport
+
+| Shortcut | Default action |
+| --- | --- |
+| `Prefix → Delete` (`DC`) | Reset the Window's visible area to follow the cursor |
+| `Prefix → PageUp` (`PPage`) | Enter copy mode and scroll up |
+| `Prefix → ↑ / ↓ / ← / →` | Select the Pane in that direction (4 separate default bindings) |
+| `Prefix → Alt+1` | Set the even-horizontal layout |
+| `Prefix → Alt+2` | Set the even-vertical layout |
+| `Prefix → Alt+3` | Set the main-horizontal layout |
+| `Prefix → Alt+4` | Set the main-vertical layout |
+| `Prefix → Alt+5` | Select the tiled layout |
+| `Prefix → Alt+n` | Select the next Window with an alert |
+| `Prefix → Alt+o` | Rotate through Panes in reverse |
+| `Prefix → Alt+p` | Select the previous Window with an alert |
+| `Prefix → Alt+↑ / ↓ / ← / →` | Resize the Pane by 5 cells (4 separate default bindings) |
+| `Prefix → Ctrl+↑ / ↓ / ← / →` | Resize the Pane by 1 cell (4 separate default bindings) |
+| `Prefix → Shift+↑ / ↓ / ← / →` | Move the visible area of the Window (4 separate default bindings) |
+
+The tables cover **83 bindings** in tmux 3.2a's default Prefix table. Direction and number keys are grouped by function for readability, but the total counts their individual bindings.
+
+### Inspect the current bindings in tmux or the shell
+
+- `Prefix → ?`: view every binding inside tmux; press `q` to exit.
+- `Prefix → /`: describe one key binding, when this default binding is supported by your version and configuration.
+- `tmux list-keys -T prefix -N`: print the complete, annotated Prefix table from the shell.
+
+```bash
+tmux list-keys -N
+tmux list-keys -T prefix -N
+tmux lsk -N | less
+```
+
+Copy mode and vi-style copy mode have separate, much larger key tables. They are intentionally not dumped into this beginner guide; advanced users can inspect them directly:
+
+```bash
+tmux list-keys -T copy-mode
+tmux list-keys -T copy-mode-vi
+```
 
 ## Three panes in one minute
 
