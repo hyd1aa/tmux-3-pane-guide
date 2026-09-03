@@ -22,6 +22,7 @@
 - [快捷键帮助](#tmux-快捷键帮助--cheat-sheet)
 - [完整默认快捷键参考](#完整默认快捷键参考)
 - [一分钟完成三分屏](#一分钟完成三分屏)
+- [推荐搭配：AIUsage](#aiusage-companion)
 - [常见问题](#常见问题-faq)
 
 ## tmux 是什么
@@ -33,6 +34,7 @@ tmux 是一个终端复用工具。它可以在一个终端里创建多个页面
 - 左边运行编辑器，右上查看日志，右下执行命令
 - 让下载、编译或服务在 SSH 断开后继续运行
 - 在一个 SSH 窗口中管理多个终端任务
+- 在多个 Pane 中同时运行 AI CLI，并搭配 [AIUsage](https://github.com/hyd1aa/aiusage) 统一查看额度
 
 ## 安装 tmux
 
@@ -448,6 +450,41 @@ Ctrl + b → "
 ```bash
 tmux a -t work
 ```
+
+<a id="aiusage-companion"></a>
+
+## 🤖 推荐搭配：AIUsage AI CLI 额度终端看板
+
+三分屏搭好以后，如果你会在 VPS 上同时运行多个 AI CLI，可以把右下 Pane 留给 AIUsage：
+
+```text
+┌──────────────────────┬──────────────────────┐
+│                      │    第二个 AI CLI     │
+│                      │    Grok / Shell      │
+│     主要 AI CLI      ├──────────────────────┤
+│       Codex          │                      │
+│                      │       AIUsage        │
+│                      │   AI CLI 额度看板    │
+└──────────────────────┴──────────────────────┘
+```
+
+- **左侧大 Pane：**主要 AI CLI，例如 Codex
+- **右上 Pane：**第二个 AI CLI，例如 Grok，也可以用于 Shell 或日志
+- **右下 Pane：**AIUsage，用来统一查看剩余额度、使用百分比、Reset 时间和当前系统时间
+
+👉 [AIUsage — AI CLI 额度终端看板](https://github.com/hyd1aa/aiusage)
+
+<br>
+
+[![AIUsage AI CLI 额度终端看板](docs/images/aiusage-preview.png)](https://github.com/hyd1aa/aiusage)
+
+<br>
+
+### 想试试 AIUsage？
+
+完整安装和使用说明请查看上面的 AIUsage 项目。安装后，普通用户输入 `ai` 进入管理菜单；熟悉用户输入 `aiusage` 直接打开额度看板。如果系统已有第三方 `ai` 命令，则使用 `aiusage --menu` 进入同一个管理菜单。
+
+> AIUsage 不是 tmux 的必需组件。这个教程可以完全独立使用；AIUsage 只是针对多 AI CLI / VPS 三分屏场景的推荐搭配，也不是 tmux 插件。
 
 ## 常见问题 FAQ
 

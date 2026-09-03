@@ -22,6 +22,7 @@ A from-scratch guide to tmux on Linux, SSH, and VPS servers, ending with one lar
 - [Keyboard cheat sheet](#tmux-keyboard-shortcuts--cheat-sheet)
 - [Complete default key bindings](#complete-default-key-bindings-reference)
 - [Three panes in one minute](#three-panes-in-one-minute)
+- [Recommended Companion: AIUsage](#aiusage-companion)
 - [FAQ](#frequently-asked-questions)
 
 ## What is tmux?
@@ -33,6 +34,7 @@ Common uses include:
 - Editor on the left, logs at the top right, and a shell at the bottom right
 - Long downloads, builds, and services that survive SSH disconnects
 - Several terminal tasks inside one SSH connection
+- Multiple AI CLIs across Panes, with [AIUsage](https://github.com/hyd1aa/aiusage) keeping their limits in one view
 
 ## Install tmux
 
@@ -448,6 +450,41 @@ Come back with:
 ```bash
 tmux a -t work
 ```
+
+<a id="aiusage-companion"></a>
+
+## 🤖 Recommended Companion: AIUsage
+
+After creating the three-pane layout, users running multiple AI CLIs on a VPS can dedicate the lower-right Pane to AIUsage:
+
+```text
+┌──────────────────────┬──────────────────────┐
+│                      │    Second AI CLI     │
+│                      │    Grok / Shell      │
+│    Primary AI CLI    ├──────────────────────┤
+│       Codex          │                      │
+│                      │       AIUsage        │
+│                      │  AI usage dashboard  │
+└──────────────────────┴──────────────────────┘
+```
+
+- **Large left Pane:** your primary AI CLI, such as Codex
+- **Upper-right Pane:** a second AI CLI such as Grok, or a Shell or log view
+- **Lower-right Pane:** AIUsage for remaining quota, usage percentages, reset times, and system time
+
+👉 [AIUsage — AI CLI usage and rate-limit dashboard](https://github.com/hyd1aa/aiusage)
+
+<br>
+
+[![AIUsage AI CLI usage dashboard](docs/images/aiusage-preview.png)](https://github.com/hyd1aa/aiusage)
+
+<br>
+
+### Want to try AIUsage?
+
+See the AIUsage project above for complete installation and usage instructions. After installation, beginners can run `ai` for the management menu, while experienced users can run `aiusage` to open the dashboard directly. If another program already owns the `ai` command, use `aiusage --menu` for the same management menu.
+
+> AIUsage is optional and is not required to use tmux. This guide works independently; AIUsage is simply a companion tool for people running multiple AI CLIs in this three-pane VPS workflow. It is not a tmux plugin.
 
 ## Frequently asked questions
 
